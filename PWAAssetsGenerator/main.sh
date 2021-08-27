@@ -1,0 +1,1 @@
+pwa-asset-generator icon.png res -b "#254889"
