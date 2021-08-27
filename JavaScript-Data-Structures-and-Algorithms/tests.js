@@ -1,39 +1,14 @@
 'use strict'
+/**
+ * RSA Encryption
+ */
+/*
+1. Select two (usually large) prime numbers, p and q.
+  a. The product of p and q is denoted as n.
+  b. The product of (p-1) and (q-1) is denoted as phi.
+2. Choose two exponents, e and d.
+  a. e is typically 3. Other values greater than 2 can be used.
+  b. d is a value such that (e × d) % phi = 1.
+*/
 
-const DICTIONARY = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split('');
-const base = DICTIONARY.length; // 62
-
-function encodeID (num) {
-  let encoded = '';
-
-  if (num === 0) {
-    return DICTIONARY[0];
-  } 
-
-  while (num > 0) {
-    encoded += DICTIONARY[num % base];
-    num = Math.floor(num / base);
-  }
-  return reverseWord(encoded);
-}
-
-function reverseWord(str) {
-  let reversed = '';
-  for (let i = str.length - 1; i >= 0; i--) {
-    reversed += str.charAt(i);
-  }
-  return reversed;
-}
-
-function decodeID(id) {
-  let decoded = 0;
-  for (let index = 0; index < id.split('').length; index++) {
-    decoded = decoded * base + DICTIONARY.indexOf(id.charAt(index)); 
-  }
-  return decoded;
-}
-
-let encodedId = encodeID(778);
-console.log(encodedId);
-let decodedId = decodeID(encodedId);
-console.log(decodedId);
+// Implementation of calculation d
