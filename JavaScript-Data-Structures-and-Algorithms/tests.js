@@ -1,7 +1,9 @@
 'use strict'
+
 /**
  * RSA Encryption
  */
+
 /*
 1. Select two (usually large) prime numbers, p and q.
   a. The product of p and q is denoted as n.
@@ -12,3 +14,33 @@
 */
 
 // Implementation of calculation d
+
+function modInverse (e, phi) {
+  let m0 = phi; 
+  let t; 
+  let q;
+  let x0 = 0; 
+  let x1 = 1;
+  
+  if (phi === 1) return 0;
+
+  while (e > 1) {
+    // q is quotient
+    q = Math.floor(e / phi);
+    t = phi;
+    // phi is remainder now, process some as Eclud's algo
+    phi = e % phi, e = t;
+    t = x0;
+    x0 = x1 - q * x0;
+    x1 = t;
+  }
+
+  if (x1 < 0) {
+    x1 += m0;
+  }
+
+  return x1;
+
+}
+
+console.log(modInverse(7, 40));
