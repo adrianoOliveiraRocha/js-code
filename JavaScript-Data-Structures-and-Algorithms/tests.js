@@ -1,4 +1,5 @@
 'use strict'
+const isPrime = require('./ch2/isPrime').isPrime2;
 
 /**
  * RSA Encryption
@@ -16,12 +17,12 @@
 // Implementation of calculation d
 
 function modInverse (e, phi) {
-  let m0 = phi; 
-  let t; 
+  let m0 = phi;
+  let t;
   let q;
-  let x0 = 0; 
+  let x0 = 0;
   let x1 = 1;
-  
+
   if (phi === 1) return 0;
 
   while (e > 1) {
@@ -44,3 +45,10 @@ function modInverse (e, phi) {
 }
 
 console.log(modInverse(7, 40));
+
+function RSAKeyPair (p, q) {
+  if (isPrime(p) && isPrime(q)) return;
+  if (p == q) return;
+
+
+}
