@@ -35,9 +35,25 @@ function IntegerCellInterface() {
 
   }
 
-  this.addAtBeginning = function (top, newCell) {
+  this.addAtBeginning = function (top, newCell) { // O(1)
     newCell.next = top;
     console.log(newCell);
+  }
+
+  this.addAtEnd = function (top, newCell) { //O(N)
+    while(top.next) {
+      top = top.next;
+    }
+    top.next = newCell;
+  }
+
+  this.insertCell = function (afterMe, newCell) {
+    newCell.next = afterMe.next;
+    afterMe.next = newCell;
+  }
+
+  this.deleteCell = function (afterMe) {
+    afterMe.next = afterMe.next.next;
   }
   
 }
