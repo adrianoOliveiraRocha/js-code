@@ -1,17 +1,16 @@
 'use strict'
 
-let arr = [1, 2, 3, 4, 5];
+function CommunElements(data) {
+  let howMatchArray = data.length;
+  data[0].forEach(element => {
+    console.log(element);
+  });
 
-let result = arr.slice(2, 4)
-console.log(result);
-
-function arraySlice(arr, init, end) {
-  let temp = [];
-  for(let i in arr) {
-    if(i >= init && i < end) temp.push(arr[i]);
-  }
-  return temp;
 }
-
-let result1 = arraySlice(arr, 2, 4)
-console.log(result);
+let arr1 = [1, 5, 4, 6, 7], 
+    arr2 = [4, 2, 6, 89],
+    arr3 = [98, 32, 4, 1, 4];
+ 
+let data = []; 
+data.push(arr1), data.push(arr2), data.push(arr3);
+CommunElements(data)
