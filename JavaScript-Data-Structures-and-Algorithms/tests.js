@@ -1,22 +1,25 @@
 'use strict'
 
 let arr = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 9]
+  [1, 2, 3, 4, 5],
+  [6, 7, 8, 9, 10],
+  [11, 12, 13, 14, 15],
+  [16, 17, 18, 19, 20]  
 ]
 
-function espiralArray(arr, size) {
-  for(let i = 0; i < size; i++) {
-    console.log(arr[0].shift(i))    
-  }
-  arr[0] = undefined
-  return arr.filter(element => element !== undefined);
-}
+let resp = []
 
-function run(arr) {
-  arr = espiralArray(arr, arr[0].length)
-  
+function espiralArray(arr) {
+
+  let size = arr[0].length
+  arr = (function () {
+    for(let i = 0; i < size; i++) {
+      resp.push(arr[0].shift(i))    
+    }
+    arr[0] = undefined
+    return arr.filter(element => element !== undefined);
+  })();
+
   if(arr.length > 0) {
     let lines = arr.length;
     let columns = arr[0].length;
@@ -28,12 +31,14 @@ function run(arr) {
       }
       newArr.push(a)
     }
-    run(newArr)    
+    espiralArray(newArr)    
   }
 
 }
 
-run(arr)
+espiralArray(arr)
+
+console.log(resp);
 
 
 
