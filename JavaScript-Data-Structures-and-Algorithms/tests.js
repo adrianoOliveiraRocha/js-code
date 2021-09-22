@@ -7,9 +7,7 @@ let arr = [
   [16, 17, 18, 19, 20]  
 ]
 
-let resp = []
-
-function espiralArray(arr) {
+function espiralArray(arr, resp) {
 
   let size = arr[0].length
   arr = (function () {
@@ -31,12 +29,12 @@ function espiralArray(arr) {
       }
       newArr.push(a)
     }
-    espiralArray(newArr)    
+    espiralArray(newArr, resp)    
   }
 
 }
-
-espiralArray(arr)
+let resp = []
+espiralArray(arr, resp)
 
 console.log(resp);
 
