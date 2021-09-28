@@ -50,8 +50,27 @@ function mazePathFinder(mazeMatrix) {
   
   path(starPos, endPos);
   function path(x, y) {
-    // go on...
+    if (x > row - 1 || y > column - 1 || x < 0 || y < 0) {
+      return false;
+    }
+    // Found
+    if (x == endPos[0] && y == endPos[1]) {
+      return true;
+    }
+    if (mazeMatrix[x][y] == '%' || mazeMatrix[x][y] == '+') {
+      return false;
+    }
+    // Mark the current spot
+    mazeMatrix[x][y] = '+';
+    printMatrix(mazeMatrix);
+    if (path(x, y - 1) || path(x + 1, y) || path(x, y + 1) || path(x - 1, y)) {
+      return true;
+    }
+    mazeMatrix[x][y] = '.';
+    return false;
   }
 }
+
+mazePathFinder(board);
 
 
