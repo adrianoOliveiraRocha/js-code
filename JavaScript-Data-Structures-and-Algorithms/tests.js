@@ -14,11 +14,9 @@ rows = rows.filter((arr) => {
   if(arr.length > 0) return arr.split("")
 })
 
-function generateColumnArr(arr) {
+let mazeMatrix = rows.map(function(arr) {
   return arr.split("")
-}
-
-let mazeMatrix = rows.map(generateColumnArr)
+})
 
 function findChar(char, mazeMatrix) {
   let row = mazeMatrix.length, 
