@@ -21,15 +21,59 @@ let mazeMatrix = rows.map(function(arr) {
 function findChar(char, mazeMatrix) {
   let row = mazeMatrix.length, 
       column = mazeMatrix[0].length;
-  console.log(row, column)
+  
   for(let i = 0; i < row; i++) {
     for(let j = 0; j < column; j++) {
-      console.log(i, j)
-      console.log(mazeMatrix[i][j])
-      console.log("\n");
-      // if(mazeMatrix[i][j] == char) return [i, j];
+      if(mazeMatrix[i][j] == char) return [i, j];
     }
   }
 }
 
-findChar('x', mazeMatrix)
+function printMatrix(matrix) {
+  let mazePrintStr = "", 
+      row = matrix.length, 
+      column = matrix[0].length;
+  
+  for(let i = 0; i < row; i++) {
+    for(let j = 0; j < column; j++) {
+      mazePrintStr += matrix[i][j];
+    }
+    mazePrintStr += "\n"
+  }
+
+  console.log(mazePrintStr);
+
+}
+
+function mazePathFinder(mazeMatrix) {
+  var row = mazeMatrix.length,
+      column = mazeMatrix[0].length,
+      startPos = findChar('e', mazeMatrix),
+      endPos = findChar('x', mazeMatrix);
+  
+  path(startPos[0], startPos[1])
+
+  function path(x, y) {
+    if (x > row - 1 || y > column - 1 || x < 0 || y < 0) {
+        return false;
+    }
+    // Found
+    if (x == endPos[0] && y == endPos[1]) {
+        return true;
+    }
+    if (mazeMatrix[x][y] == '%' || mazeMatrix[x][y] == '+') {
+        return false;
+    }
+    // Mark the current spot
+    mazeMatrix[x][y] = '+';
+    printMatrix(mazeMatrix);
+    if (path(x, y - 1) || path(x + 1, y) || path(x, y + 1) || path(x - 1, y)) {
+        return true;
+    }
+    mazeMatrix[x][y] = '.';
+    return false;
+  }
+
+}
+
+mazePathFinder(mazeMatrix);
