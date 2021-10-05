@@ -1,4 +1,3 @@
-'use strict'
 
 function isPrime(n) {
 	if (n <= 1) return false;

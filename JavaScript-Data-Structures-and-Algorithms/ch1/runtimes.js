@@ -1,5 +1,3 @@
-'use strict'
-
 function exampleLinear(n) {
   for (let i = 0; i < n; i++) { // O(n)
     console.log(i); 

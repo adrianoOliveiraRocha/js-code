@@ -1,5 +1,3 @@
-'use strict'
-
 /*
 This block of code has f(n) = n. This is because it adds to count n times. Therefore,
 this function is O(n) in time complexity

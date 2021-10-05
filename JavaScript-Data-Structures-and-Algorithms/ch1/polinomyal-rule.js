@@ -1,5 +1,3 @@
-'use strict'
-
 // If f(n) is a polynomial of degree k, then f(n) is O(n**k)
 
 function a(n) {

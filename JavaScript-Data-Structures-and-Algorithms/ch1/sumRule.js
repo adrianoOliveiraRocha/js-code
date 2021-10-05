@@ -1,4 +1,3 @@
-'use strict'
 // If f(n) is O(h(n)) and g(n) is O(p(n)), then f(n)+g(n) is O(h(n)+p(n)).
 function n(n) {
   var count = 0;
