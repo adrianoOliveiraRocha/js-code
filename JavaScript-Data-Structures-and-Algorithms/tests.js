@@ -1,4 +1,7 @@
-function permute(arr, count) {
+let initArr = ['A', 'C', 'D'] 
+let count = 0;
+
+function permute(arr) {  
   let first = arr[0]
   console.log(arr)
   for (const el of arr) {
@@ -7,28 +10,18 @@ function permute(arr, count) {
       if(first == temp && arr[i + 1]) {
         arr[i] = arr[i + 1];
         arr[i + 1] = first;         
-      }       
-      if(first == arr[arr.length - 1] && count < arr.length) {
-        permute(arr, count + 1);
+      }   
+      
+      if(first == arr[arr.length - 1] && count < initArr.length) {
+        permute(arr);
       }
-      else {
+      else if(count < initArr.length) {
         console.log(arr);
-      }       
+      }
+      count++
+
     }
   }
 }
 
-permute(['A', 'C', 'D'], 0);
-
-/*
-
-[ 'A', 'C', 'D' ]
-[ 'C', 'A', 'D' ]
-[ 'C', 'D', 'A' ]
-[ 'D', 'C', 'A' ]
-[ 'D', 'A', 'C' ]
-[ 'A', 'D', 'C' ]
-repeate => [ 'A', 'C', 'D' ]. it need stop here
-the result is rigth but it go on...
-
-*/
+permute(initArr);
