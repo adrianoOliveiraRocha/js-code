@@ -1,4 +1,3 @@
-
 /*
 flatten dictionary => {'Key1': '1', 'Key2.a': '2','Key2.b' : '3', 'Key2.c.d' : '3', 'Key2.c.e' : '1'}
 */
@@ -15,13 +14,14 @@ let dictionary = {
    }
 }
 
-function flattenDictionary(dictionary, value=null) {
-  let flattenedDictionary = {}
+let flattenedDictionary = {}
+function flattenDictionary(dictionary, keyPlus=null) {
   for (var key in dictionary) {
+    let newKey = (keyPlus ? keyPlus + '.' : '') + key
     if(typeof dictionary[key] != 'object') {
-      flattenedDictionary[key] = dictionary[key]
+      flattenedDictionary[newKey] = dictionary[key]
     } else {
-      console.log(dictionary[key])
+      flattenDictionary(dictionary[key], newKey)
     }
   }
   return flattenedDictionary;
