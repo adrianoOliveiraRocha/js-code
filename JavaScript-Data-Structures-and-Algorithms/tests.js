@@ -21,8 +21,7 @@ function isItPalindromeRS(word) {
       return;
     } else {
       main(word, (begin + 1), (end - 1))
-    }
-    main(arr.join(''))
+    }   
   }
   
   main(word)
