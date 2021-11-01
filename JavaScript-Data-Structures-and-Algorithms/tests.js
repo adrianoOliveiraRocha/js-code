@@ -14,17 +14,17 @@ function isItPalindrome(word) {
 // recursive solution 
 function isItPalindromeRS(word) {
   let response = true
-  function main(word) {
-    let arr = word.split('');
-    let first = arr.shift(), last = arr.pop();
-    if(last) {
-      if(first != last) {
-        response = false;
-        return;
-      }
-      main(arr.join(''))
+  function main(word, begin=0, end = (word.length - 1)) {
+    if(begin >= end) return true;
+    if(word.charAt(begin) != word.charAt(end)) {
+      response = false;
+      return;
+    } else {
+      main(word, (begin + 1), (end - 1))
     }
+    main(arr.join(''))
   }
+  
   main(word)
   return response;
 
