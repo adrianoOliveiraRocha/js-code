@@ -1,6 +1,6 @@
 // WRITE A PROGRAM THAT RECURSIVELY DETERMINES IF A STRING IS A PALINDROME
-// easy solution
-function itIsPalindrome(word) {
+
+function isItPalindrome(word) {
   let x = word.split('')
   let y = word.split('').reverse()
   for(let i = 0; i < x.length; i++) {
@@ -11,7 +11,29 @@ function itIsPalindrome(word) {
   return true;
 }
 
-console.log(itIsPalindrome('adriano'))
-console.log(itIsPalindrome('madam'))
+// recursive solution 
+function isItPalindromeRS(word) {
+  let response = true
+  function main(word) {
+    let arr = word.split('');
+    let first = arr.shift(), last = arr.pop();
+    if(last) {
+      if(first != last) {
+        response = false;
+        return;
+      }
+      main(arr.join(''))
+    }
+  }
+  main(word)
+  return response;
 
-// recursive solution ?
+}
+// true
+console.log(isItPalindromeRS('racecar'))
+console.log(isItPalindromeRS('testset'))
+console.log(isItPalindromeRS('aibohphobia'))
+// false
+console.log(isItPalindromeRS('adriano'))
+console.log(isItPalindromeRS('anywordnopalindrome'))
+console.log(isItPalindromeRS('ohmygosh'))
