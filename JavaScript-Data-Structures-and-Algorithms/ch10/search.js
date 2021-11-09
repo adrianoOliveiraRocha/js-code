@@ -6,7 +6,7 @@ function linearSearch(arr, n) {
   return false;
 }
 
-function binarySearch(arr, n) {
+function binarySearch_mysolution(arr, n) {
   let response = false;
   function main(arr, n) {
     let center = Math.ceil(arr.length / 2)
@@ -23,4 +23,22 @@ function binarySearch(arr, n) {
   }  
   main(arr, n)
   return response;  
+}
+
+function binarySearch(arr, n) {
+  let lowIndex = 0, higthIndex = (arr.length - 1)
+  while(lowIndex < (higthIndex + 1)) {
+    let midIndex = Math.floor((lowIndex + higthIndex) / 2)
+    console.log(lowIndex, higthIndex)
+    if(arr[midIndex] == n) {
+      return midIndex;
+    }
+    else if(n > arr[midIndex]) {
+      lowIndex = midIndex;
+    }
+    else {
+      higthIndex = midIndex
+    }
+  }
+  return -1
 }

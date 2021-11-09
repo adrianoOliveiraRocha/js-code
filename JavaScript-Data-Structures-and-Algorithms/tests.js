@@ -1,22 +1,18 @@
 
-let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], n = 11;
+let arr = [6,4,3,2,1,5];
 
-function binarySearch(arr, n) {
-  let lowIndex = 0, higthIndex = (arr.length - 1)
-  while(lowIndex < (higthIndex + 1)) {
-    let midIndex = Math.floor((lowIndex + higthIndex) / 2)
-    console.log(lowIndex, higthIndex)
-    if(arr[midIndex] == n) {
-      return midIndex;
-    }
-    else if(n > arr[midIndex]) {
-      lowIndex = midIndex;
-    }
-    else {
-      higthIndex = midIndex
+function bublleSort(arr) {
+  for(let i = 0; i < arr.length; i++) {
+    for(let j = 0; j < i; j++) {
+      if(arr[i] < arr[j]) {
+        let temp = arr[j]
+        arr[j] = arr[i]
+        arr[i] = temp
+      }
     }
   }
-  return -1
+  console.log(arr);
 }
 
-console.log(binarySearch(arr, n))
+bublleSort(arr);
+
