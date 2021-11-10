@@ -1,18 +1,19 @@
+'use strict'
 
-let arr = [6,4,3,2,1,5];
-
-function bublleSort(arr) {
-  for(let i = 0; i < arr.length; i++) {
-    for(let j = 0; j < i; j++) {
-      if(arr[i] < arr[j]) {
-        let temp = arr[j]
-        arr[j] = arr[i]
-        arr[i] = temp
+function selectionSort(arr) {
+  let i = 0
+  while(i < arr.length) {
+    let min = arr[i]
+    for(let j = i; j < arr.length; j++) {
+      if(arr[j] < arr[i]) {
+        let temp = arr[i];
+        arr[i] = arr[j]; arr[j] = temp;
       }
     }
+    i++;
   }
-  console.log(arr);
+  return arr;
 }
 
-bublleSort(arr);
-
+let arr = [7, 4, 5, 9, 8, 2, 1]
+console.log(selectionSort(arr))
