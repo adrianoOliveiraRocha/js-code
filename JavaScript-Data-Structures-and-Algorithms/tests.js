@@ -1,41 +1,22 @@
 'use strict'
+let array = [5, 2, 4, 6, 1, 3, 2, 6]
 
-let arr = [1, 3, 14, 7, 8, 1, 2]
-
-function partition(array, left, right) {
-  var pivot = array[Math.floor((right + left) / 2)]
-  while(left <= right) { 
-    while(pivot > array[left]) {
-      left++
-    }
-    while(pivot < array[right]) {
-      right--
-    }
-    if(left <= right) {
-      var temp = array[left]
-      array[left] = array[right]
-      array[right]= temp
-      left++; right--;
+function merge(leftA, rightA) {
+  /* add all the elements from both arrays in sorted order in a
+  result array*/
+  let results = [], leftIndex = 0, rigthIndex = 0;
+  while(leftIndex < leftA.length && rigthIndex < rightA.length) {
+    if(leftA[leftIndex] < rightA[rigthIndex]) {
+      results.push(leftA[leftIndex++])
+    } else {
+      results.push(rightA[rigthIndex++])
     }
   }
-  return left;
+  let leftRemains = leftA.slice(leftIndex)
+  let rigthRemains = rightA.slice(rigthIndex)
+  // add remaining to resultant array
+  console.log(leftRemains, rigthRemains);
+  return results.concat(leftRemains).concat(rigthRemains);
 }
 
-function quickSelectInPlace(A, l, h, k) {
-  let p = partition(A, l, h)
-  console.log(p);
-  if(p == (k - 1)) {
-    console.log(A);
-    return A[p]
-  } else if(p > (k - 1)) {
-    return quickSelectInPlace(A, l, p - 1, k)
-  } else {
-    return quickSelectInPlace(A, p + 1, h, k)
-  }
-}
-
-function medianQuickSelect(arr) {
-  return quickSelectInPlace(arr, 0, arr.length - 1, Math.floor(arr.length / 2))
-}
-
-console.log(quickSelectInPlace(arr, 0, arr.length - 1, 4)) 
+console.log(merge([5, 2, 4, 6], [1, 3, 2, 6]))
