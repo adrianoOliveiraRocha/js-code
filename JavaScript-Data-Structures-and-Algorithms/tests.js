@@ -1,5 +1,6 @@
 'use strict'
-// next => Bonus: Find a Square Root of a Float. pag 144
+
+// Time Complexity: O(n)
 function sqrtIntNaive(number) {
   if(number == 0 || number == 1) return number;
 
@@ -15,6 +16,7 @@ function sqrtIntNaive(number) {
 
 }
 
+// Time Complexity: O(log 2 (n))
 function sqrtInt(number) {
   if(number === 0 || number === 1) return number;
 
@@ -34,6 +36,27 @@ function sqrtInt(number) {
 
 }
 
-console.log(sqrtInt(9))
-console.log(sqrtInt(49))
+// Time Complexity: O(log 2 (n))
+function sqrtDouble(number) {
+  let threshold = 0.1, 
+      upper = number, 
+      lower = 0, 
+      middle;
+  
+  while (upper - lower > threshold) {
+    middle = (upper + lower) / 2;
+    if(middle * middle > number) {
+      upper = middle;
+    } else {
+      lower = middle;
+    }
+  }
+
+  return middle;
+
+}
+
+console.log(sqrtDouble(9));
+
+
 
