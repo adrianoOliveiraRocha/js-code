@@ -1,27 +1,25 @@
 'use strict'
 
-function findTwoSum1(array, sum) {
-  let response = [];
-  for(let i = 0; i < array.length; i++) {
-    for(let j = (i + 1); j < array.length; j++) {
-      if(array[i] + array[j] == sum) response.push([array[i], array[j]]);
+function findOnlyOnce(arr, low, high) {
+  if(low > higth) return null;
+  if(low == higth) return low;
+
+  let mid = Math.floor((higth + low) / 2);
+
+  if(mid % 2 == 0) {
+    if(arr[mid] == arr[mid + 1]) {
+      return findOnlyOnce(arr, mid + 2, higth);
+    } else {
+      return findOnlyOnce(arr, low, mid);
+    }
+  } else {
+    if(arr[mid] == arr[mid - 1]) {
+      return findOnlyOnce(arr, mid + 1, higth);
+    } else {
+      return findOnlyOnce(arr, low, mid - 1);
     }
   }
-  return response;
 }
 
-function findTwoSum2(array, sum) {
-  let store = {}
-  for(let i = 0; i < array.length; i++) {
-    if(store[array[i]]) return true;
-    else {
-      store[sum - array[i]] = array[i];
-    }
-  }
-  return false
-}
-
-let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-let sum = 7;
-console.log(findTwoSum2(array, sum));
-
+let arr = [1, 1, 3, 3, 4, 5, 5, 7, 7, 8, 8];
+findOnlyOnce(arr, 4);
