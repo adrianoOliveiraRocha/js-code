@@ -1,25 +1,25 @@
 'use strict'
 
-function findOnlyOnce(arr, low, high) {
-  if(low > higth) return null;
-  if(low == higth) return low;
+/*
+CREATE A JAVASCRIPT SORT COMPARATOR FUNCTION THAT WOULD SORT STRING BY LENGTH 
+*/
 
-  let mid = Math.floor((higth + low) / 2);
+var mythical = ['dragon', 'slayer','magic','wizard of oz', 'ned stark'];
 
-  if(mid % 2 == 0) {
-    if(arr[mid] == arr[mid + 1]) {
-      return findOnlyOnce(arr, mid + 2, higth);
-    } else {
-      return findOnlyOnce(arr, low, mid);
-    }
-  } else {
-    if(arr[mid] == arr[mid - 1]) {
-      return findOnlyOnce(arr, mid + 1, higth);
-    } else {
-      return findOnlyOnce(arr, low, mid - 1);
+function sortComparator(arr) {
+  
+  for(let i = 0; i < arr.length; i++) {
+    if(arr[i - 1]) {
+      if(arr[i] < arr[i - 1]) {
+        let temp = arr[i];
+        arr[i] = arr[i - 1];
+        arr[i - 1] = temp
+      }
     }
   }
-}
 
-let arr = [1, 1, 3, 3, 4, 5, 5, 7, 7, 8, 8];
-findOnlyOnce(arr, 4);
+  return arr;
+
+}
+console.log(mythical)
+console.log(sortComparator(mythical));
