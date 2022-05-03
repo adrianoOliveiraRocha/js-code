@@ -1,3 +1,3 @@
 git add .;
-git commit -m 'color picker';
+git commit -m 'captcha';
 git push;
