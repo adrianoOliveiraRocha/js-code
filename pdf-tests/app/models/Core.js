@@ -10,7 +10,7 @@ Core.prototype.test = function() {
 
 Core.prototype.create = async function() {
   const pdfLib = require('pdf-lib');
-
+  
 }
 
 module.exports = Core;
