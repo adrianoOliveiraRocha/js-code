@@ -24,9 +24,29 @@ function broadcast(jsonObject) {
   });
 }
 
+function corsValidation(origin) {
+  return process.env.CORS_ORIGIN === "*" || process.env.CORS_ORIGIN.startsWith(origin)
+}
+
+function verifyClient(info, callback) {
+  if(!corsValidation(info.origin)) return callback(false);
+
+  const token = info.req.url.split('token=')[1];
+
+  if(token) {
+    if(token === '12356') {
+      return callback(true);
+    }   
+  }
+
+  return callback(false);
+
+}
+
 module.exports = (server) => {
   const wss = new WebSocket.Server({
-    server
+    server,
+    verifyClient
   })
 
   wss.on('connection', onConnection);
