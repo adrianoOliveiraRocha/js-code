@@ -1,2 +1,3 @@
+ws://localhost:3000?token=123456
+
 https://www.luiztools.com.br/post/como-criar-um-servidor-de-websockets-em-node-js-2/
-// Repare que agora já temos alguma seguranç

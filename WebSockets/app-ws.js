@@ -25,7 +25,7 @@ function broadcast(jsonObject) {
 }
 
 function corsValidation(origin) {
-  return process.env.CORS_ORIGIN === "*" || process.env.CORS_ORIGIN.startsWith(origin)
+  return process.env.CORS_ORIGIN === "*" || process.env.CORS_ORIGIN.startsWith(origin);
 }
 
 function verifyClient(info, callback) {
@@ -34,7 +34,7 @@ function verifyClient(info, callback) {
   const token = info.req.url.split('token=')[1];
 
   if(token) {
-    if(token === '12356') {
+    if(token === '123456') {
       return callback(true);
     }   
   }
