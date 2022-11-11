@@ -9,11 +9,16 @@ app.set('views', './app/views');
 
 const httpServer = http.Server(app);
 const io = new Server(httpServer);
-
+                
 io.on('connect', (socket) => {
+  //socket here is the connected user
+  io.to(socket.id).emit('hi!', 'how are you?');
+
   socket.on('test', (res) => {
-    console.log(res);
+    console.log("Received message: ", res);
+    io.to(socket.id).emit(res);
   });
+
 })
 
 app.get('/', (req, res) => {
