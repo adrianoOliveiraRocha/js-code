@@ -1,7 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import ViewStyleProps from './screens/ViewStyleProps/ViewStylePropsExample';
+import AlignItemsBasics from './screens/AlignItems/AlignItemsBasics';
+import FlexDirectionBasics from './screens/FlexDirection/FlexDirectionBasics';
+import JustifyContentBasics from './screens/JustifyContent/JustifyContentBasics';
+import LayoutPropsExample from './screens/LayoutProps/LayoutPropsExample';
 
 export default function App() {
   return (

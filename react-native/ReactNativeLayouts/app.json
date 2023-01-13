@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "ReactNativeLayouts",
-    "slug": "ReactNativeLayouts",
+    "slug": "react-native-layouts",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
