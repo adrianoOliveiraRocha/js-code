@@ -14,7 +14,7 @@ export default function App() {
           tabBarActiveTintColor: '#FFFFFF',
           tabBarInactiveTintColor: '#F8F8F8',
           tabBarStyle: {
-            backgroundColor: '#633689',
+            backgroundColor: '#431',
             margin: 1,
             borderTopWidth: 25,
             borderTopColor: '#fff'

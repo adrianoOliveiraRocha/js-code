@@ -48,7 +48,46 @@ const styles = StyleSheet.create({
   },
 
   form: {
-    
+    flexDirection: "row",
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+
+  titleFild: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10
+  },
+
+  tiContainer: {
+    textAlign: 'center',
+    margin: 15
+  },
+
+  inputFild: {
+    height: 50,
+    width: 300,
+    fontSize: 25,
+    textAlign: "center",
+    margin: 12,
+    borderWidth: 1,
+    padding: 10
+  },
+
+  button: {
+    height: 60,
+    width: 300,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    backgroundColor: colors.color2
+  },
+
+  textButton: {
+    fontSize: 25,
+    textAlign: "center",
+    color: 'white'
   }
 });
 
