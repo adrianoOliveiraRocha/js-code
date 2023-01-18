@@ -15,8 +15,7 @@ const Client = {
 
   insertClient: async function(data) {
     let clients = await this.getClients();
-    if(clients) { // We have clients
-      // https://github.com/adrianoOliveiraRocha/PhraseNotebook/blob/master/models/Phrase.js
+     if(clients) { // We have clients
       let lastId;
       let data = [];
       clients.forEach((item, i) => {

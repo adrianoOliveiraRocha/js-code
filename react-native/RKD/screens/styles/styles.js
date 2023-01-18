@@ -88,7 +88,14 @@ const styles = StyleSheet.create({
     fontSize: 25,
     textAlign: "center",
     color: 'white'
-  }
+  },
+
+  item: {
+    backgroundColor: '#1abc9c',
+    padding: 10,
+    margin: 2,
+    alignItems: 'center'
+  },
 });
 
 export default styles;

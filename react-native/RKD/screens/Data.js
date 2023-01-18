@@ -4,8 +4,44 @@ import colors from './styles/colors';
 import styles from './styles/styles';
 import Client from '../models/Client';
 
+function Item({ item }) {
+  return (
+    <TouchableOpacity style={styles.item}>
+      <Text>{item.name}</Text>
+    </TouchableOpacity>
+  )
+}
+
 function Data() {
-  
+
+  function renderItem({ item }) {
+    return (
+      <Item item={item} />
+    )
+  }
+
+  const [data, setData] = React.useState([]);
+
+  (function useAsync(asyncFun, onSeccess) {
+    React.useEffect(() => {
+      Client.getClients()
+      .then(clients => {
+        let isMounted = true;
+        console.log(clients);
+        if(isMounted && clients) {
+          let arrayTemp = [];
+          clients.forEach(client => {
+            arrayTemp.push({ key: client.id, name: `${client.name}` });
+          });
+          setData(arrayTemp);
+        }
+      })
+      .catch(error => {
+        alert("OOPS! " + error);
+      })
+    }, [asyncFun, onSeccess]);
+  })();
+
   function clearData() {
     Client.clear()
     .then(res => {
@@ -26,7 +62,10 @@ function Data() {
         </Text>
       </View>
       <View style={styles.middle}>
-        <View style={styles.form}>
+        <View style={{flex: 0.8}}>
+          {/* FlatList */}
+        </View>
+        <View style={[styles.form, {flex: 0.2}]}>
           {/*row*/}
           <View> 
             <View style={styles.tiContainer}>
