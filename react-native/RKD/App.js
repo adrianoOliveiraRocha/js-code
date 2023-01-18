@@ -3,6 +3,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { NavigationContainer } from '@react-navigation/native';
 import Home from './screens/Home';
 import Formulary from './screens/Formulary';
+import Data from './screens/Data';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -43,6 +44,14 @@ export default function App() {
             tabBarLabel: "Form"
           }}
           />
+        <Tab.Screen 
+          name="Data" 
+          component={Data}
+          options={{
+            tabBarLabel: "Data"
+          }}
+          />
+
       </Tab.Navigator>
     </NavigationContainer>    
   );
