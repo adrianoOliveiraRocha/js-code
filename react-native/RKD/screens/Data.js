@@ -1,13 +1,19 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, ToastAndroid } from 'react-native';
-import colors from './styles/colors';
+import { 
+  View, 
+  Text, 
+  FlatList, 
+  TouchableOpacity, 
+  ToastAndroid,
+  SafeAreaView } from 'react-native';
+
 import styles from './styles/styles';
 import Client from '../models/Client';
 
 function Item({ item }) {
   return (
     <TouchableOpacity style={styles.item}>
-      <Text>{item.name}</Text>
+      <Text style={styles.itemText}>{item.name}</Text>
     </TouchableOpacity>
   )
 }
@@ -45,27 +51,45 @@ function Data() {
   function clearData() {
     Client.clear()
     .then(res => {
-      if(res) {
-        ToastAndroid.show("Cleaned!", ToastAndroid.LONG);
-      }
+      setData([]);
+      ToastAndroid.show("Cleaned!", ToastAndroid.LONG);
     })
     .catch(err => {
       ToastAndroid.show(err, ToastAndroid.LONG);
     }) 
   }
 
+  function update() {
+    Client.getClients()
+    .then(clients => {
+      setData(clients);
+      ToastAndroid.show("Updated!", ToastAndroid.LONG);
+    })
+    .catch(err => {
+      alert("Error: " + err);
+    })    
+  }
+
+  function backup() {
+    alert('backup');
+  }
+
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.top}>
         <Text style={styles.title}>
           Data
         </Text>
       </View>
       <View style={styles.middle}>
-        <View style={{flex: 0.8}}>
-          {/* FlatList */}
+        <View style={{flex: 0.6, marginTop: 5}}>
+          <FlatList 
+            data={data}
+            renderItem={renderItem}
+            keyExtractor={item => item.name}
+          />
         </View>
-        <View style={[styles.form, {flex: 0.2}]}>
+        <View style={[styles.form, {flex: 0.4}]}>
           {/*row*/}
           <View> 
             <View style={styles.tiContainer}>
@@ -73,6 +97,16 @@ function Data() {
                 style={[styles.button, {marginTop: 5}]}
                 onPress={clearData}>
                 <Text style={styles.textButton}>Clear Data</Text>
+              </TouchableOpacity>
+              <TouchableOpacity 
+                style={[styles.button, {marginTop: 1}]}
+                onPress={update}>
+                <Text style={styles.textButton}>Update</Text>
+              </TouchableOpacity>
+              <TouchableOpacity 
+                style={[styles.button, {marginTop: 1}]}
+                onPress={backup}>
+                <Text style={styles.textButton}>Backup</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -83,7 +117,7 @@ function Data() {
           w3software.br@gmail.com
         </Text>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 

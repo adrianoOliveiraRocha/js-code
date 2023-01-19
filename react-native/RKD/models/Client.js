@@ -1,49 +1,34 @@
 import React from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ToastAndroid } from "react-native";
+
+const key = '@clientsData'
 
 const Client = {
   getClients: async function() {
     try {
-      let clients = await AsyncStorage.getItem('Client');
-      return JSON.parse(clients);
+      let clients = await AsyncStorage.getItem(key);
+      return JSON.parse(clients); // return array of objects
     } catch (error) {
-      console.log(error);
-      return false;
+      return error;
     }
   },
 
-  insertClient: async function(data) {
-    let clients = await this.getClients();
+  insertClient: async function(client) {
+    let clients = await this.getClients(); // array of objects
      if(clients) { // We have clients
-      let lastId;
-      let data = [];
-      clients.forEach((item, i) => {
-        lastId = i;
-        let temp = {id: item.id, name: item.name, cpf: item.cpf}
-        data.push(temp);
-      });
-      let newClientId = parseInt(lastId) + 1;
-      let client = {id: newClientId, name: data.name, cpf: data.cpf};      
-      data.push(client);
-      let stringData = JSON.stringify(data);
-      await AsyncStorage.setItem('Client', stringData);
-      return true;      
+      clients.push(client);
+      await AsyncStorage.setItem(key, JSON.stringify(clients));
     } else { // Your first client
-      let client = {id: 1, name: data.name, cpf: data.cpf};
-      let stringData = JSON.stringify([client]);
-      await AsyncStorage.setItem('Client', stringData);
-      return true;
+      let clients = [client];
+      await AsyncStorage.setItem(key, JSON.stringify(clients));
     }
   },
 
   clear: async function() {
     try {
-      await AsyncStorage.removeItem('Client');
-      return true;
+      await AsyncStorage.removeItem(key);
     } catch (error) {
-      console.error(error);
-      return false;
+      return error;
     }
   }
 }

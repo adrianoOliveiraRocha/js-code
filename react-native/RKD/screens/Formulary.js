@@ -10,15 +10,12 @@ function Formulary() {
 
   function insertClient() {
     if(name && cpf) {
-      Client.insertClient({name, cpf})
+      Client.insertClient({id: Date.now(), name, cpf})
       .then(result => {
-        if(result) {
-          ToastAndroid.show("Client inserted!", ToastAndroid.LONG);
-          setName(""); setCPF("");
-        }
+        ToastAndroid.show("Client inserted!", ToastAndroid.LONG);
+        setName(""); setCPF("");        
       })
       .catch(error => {
-        console.error(error);
         alert(error);
       })
     } else {

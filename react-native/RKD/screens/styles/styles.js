@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
 
   top: {
-    flex: 0.2,
+    flex: 0.1,
     backgroundColor: colors.color2,
     borderWidth: 1,
     alignContent: 'center',
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
 
   middle: {
-    flex: 0.75,
+    flex: 0.85,
     backgroundColor: "beige",
     borderWidth: 1
   },
@@ -76,26 +76,30 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    height: 60,
+    height: 40,
     width: 300,
     margin: 12,
     borderWidth: 1,
-    padding: 10,
+    padding: 5,
     backgroundColor: colors.color2
   },
 
   textButton: {
-    fontSize: 25,
+    fontSize: 16,
     textAlign: "center",
     color: 'white'
   },
 
   item: {
-    backgroundColor: '#1abc9c',
+    backgroundColor: '#eef',
     padding: 10,
     margin: 2,
     alignItems: 'center'
   },
+
+  itemText: {
+    fontSize: 20
+  }
 });
 
 export default styles;
