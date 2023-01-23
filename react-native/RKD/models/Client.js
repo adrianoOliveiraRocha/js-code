@@ -1,6 +1,4 @@
 import React from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import RNFetchBlobFile from "rn-fetch-blob";
 const key = '@clientsData'
 
 const Client = {
