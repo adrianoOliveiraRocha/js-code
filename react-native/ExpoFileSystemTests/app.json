@@ -24,12 +24,14 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "permissions": [
+        "READ_EXTERNALSTORAGE", 
+        "WRITE_EXTERNALSTORAGE",
+        "INTERNET"
+      ]
     },
-    "permissions": [
-      "com.sec.android.provider.badge.permission.READ", 
-      "com.sec.android.provider.badge.permission.WRITE"
-    ],
+    
     "web": {
       "favicon": "./assets/favicon.png"
     }
