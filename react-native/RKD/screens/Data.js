@@ -1,4 +1,7 @@
 import React from 'react';
+import * as MediaLibrary from 'expo-media-library';
+import * as FileSystem from 'expo-file-system';
+// import * as Permissions from 'expo-permissions';
 import { 
   View, 
   Text, 
@@ -71,7 +74,17 @@ function Data() {
   }
 
   function backup() {
-    alert('backup');
+    Client.getClients()
+    .then(clients => {
+      let backup = JSON.stringify(clients);
+      let fileUri = FileSystem.documentDirectory + "text.txt";
+      FileSystem.writeAsStringAsync(fileUri, "Hello World", { encoding: FileSystem.EncodingType.UTF8 });
+      const asset = MediaLibrary.createAssetAsync(fileUri)
+      MediaLibrary.createAlbumAsync("Download", asset, false)
+    })
+    .catch(err => {
+      console.error(err);
+    })
   }
 
   return (

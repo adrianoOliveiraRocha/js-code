@@ -1,5 +1,6 @@
 import React from "react";
-const key = '@clientsData'
+const key = '@clientsData';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Client = {
   getClients: async function() {
