@@ -1,14 +1,13 @@
 import React from 'react';
-import * as MediaLibrary from 'expo-media-library';
-import * as FileSystem from 'expo-file-system';
-// import * as Permissions from 'expo-permissions';
+
 import { 
   View, 
   Text, 
   FlatList, 
   TouchableOpacity, 
   ToastAndroid,
-  SafeAreaView } from 'react-native';
+  SafeAreaView,
+  Share } from 'react-native';
 
 import styles from './styles/styles';
 import Client from '../models/Client';
@@ -36,7 +35,6 @@ function Data() {
       Client.getClients()
       .then(clients => {
         let isMounted = true;
-        console.log(clients);
         if(isMounted && clients) {
           let arrayTemp = [];
           clients.forEach(client => {
@@ -76,15 +74,37 @@ function Data() {
   function backup() {
     Client.getClients()
     .then(clients => {
-      let backup = JSON.stringify(clients);
-      let fileUri = FileSystem.documentDirectory + "text.txt";
-      FileSystem.writeAsStringAsync(fileUri, "Hello World", { encoding: FileSystem.EncodingType.UTF8 });
-      const asset = MediaLibrary.createAssetAsync(fileUri)
-      MediaLibrary.createAlbumAsync("Download", asset, false)
+      setData(clients);
+      _backup();
     })
     .catch(err => {
-      console.error(err);
+      alert(err);
     })
+  }
+
+  const _backup = () => {
+    
+    (async function onShare() {
+      try {
+        const result = await Share.share({
+          message: JSON.stringify(data),
+          title: "Meus Dados"
+        })
+
+        if(result.action === Share.sharedAction) {
+          if(result.activityType) {
+            console.log("shared with activity type of result.activityType");
+          } else {
+            console.log("shared");
+          }
+        } else if(result.action === Share.dismissedAction) {
+          console.log("dimissed");
+        }
+      } catch (error) {
+        alert(error.message);
+      }
+    })(); 
+
   }
 
   return (
