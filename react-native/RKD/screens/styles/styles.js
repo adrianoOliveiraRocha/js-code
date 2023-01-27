@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    height: 40,
+    height: 30,
     width: 300,
     margin: 12,
     borderWidth: 1,
@@ -85,9 +85,10 @@ const styles = StyleSheet.create({
   },
 
   textButton: {
-    fontSize: 16,
+    fontSize: 15,
     textAlign: "center",
-    color: 'white'
+    color: 'white',
+    // margin: 1
   },
 
   item: {

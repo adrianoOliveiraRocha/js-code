@@ -1,7 +1,5 @@
 https://react-native-async-storage.github.io/async-storage/
 
-https://www.npmjs.com/package/rn-fetch-blob
-
 DocumentPicker
 expo-file-system
 

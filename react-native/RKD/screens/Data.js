@@ -1,5 +1,6 @@
 import React from 'react';
-
+import * as DocumentPicker from 'expo-document-picker';
+import * as FileSystem from 'expo-file-system';
 import { 
   View, 
   Text, 
@@ -71,18 +72,18 @@ function Data() {
     })    
   }
 
-  function backup() {
+  function share() {
     Client.getClients()
     .then(clients => {
       setData(clients);
-      _backup();
+      _share();
     })
     .catch(err => {
       alert(err);
     })
   }
 
-  const _backup = () => {
+  const _share = () => {
     
     (async function onShare() {
       try {
@@ -105,6 +106,20 @@ function Data() {
       }
     })(); 
 
+  }
+
+  function backup() {
+    DocumentPicker.getDocumentAsync({type: '*/*', copyToCacheDirectory: false, multiple: false})
+    .then(async (result) => {
+      if(result.type === "success") {
+        let fileData = await FileSystem.readAsStringAsync(result.uri);
+        let jsonData = JSON.parse(fileData);
+        console.log(jsonData);
+      }
+    })
+    .catch(error => {
+      console.error(error);
+    })
   }
 
   return (
@@ -135,6 +150,11 @@ function Data() {
                 style={[styles.button, {marginTop: 1}]}
                 onPress={update}>
                 <Text style={styles.textButton}>Update</Text>
+              </TouchableOpacity>
+              <TouchableOpacity 
+                style={[styles.button, {marginTop: 1}]}
+                onPress={share}>
+                <Text style={styles.textButton}>Share</Text>
               </TouchableOpacity>
               <TouchableOpacity 
                 style={[styles.button, {marginTop: 1}]}
