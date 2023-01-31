@@ -1,0 +1,2 @@
+Error: Command failed: ./gradlew app:installDebug -PreactNativeDevServerPort=8081
+https://stackoverflow.com/questions/43667745/react-native-run-android-command-failed-but-gradlew-installdebug-work
