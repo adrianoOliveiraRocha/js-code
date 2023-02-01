@@ -1,2 +1,24 @@
-Error: Command failed: ./gradlew app:installDebug -PreactNativeDevServerPort=8081
-https://stackoverflow.com/questions/43667745/react-native-run-android-command-failed-but-gradlew-installdebug-work
+Constants
+
+The following constants are available on the RNFS export:
+
+    MainBundlePath (String) The absolute path to the main bundle directory (not available on Android)
+
+    CachesDirectoryPath (String) The absolute path to the caches directory
+    ExternalCachesDirectoryPath (String) The absolute path to the external caches directory (android only)
+
+    DocumentDirectoryPath (String) The absolute path to the document directory
+
+    DownloadDirectoryPath (String) The absolute path to the download directory (on android only)
+
+    TemporaryDirectoryPath (String) The absolute path to the temporary directory (falls back to Caching-Directory on Android)
+
+    LibraryDirectoryPath (String) The absolute path to the NSLibraryDirectory (iOS only)
+
+    ExternalDirectoryPath (String) The absolute path to the external files, shared directory (android only)
+
+    ExternalStorageDirectoryPath (String) The absolute path to the external storage, shared directory (android only)
+
+IMPORTANT: when using ExternalStorageDirectoryPath it's necessary to request permissions (on Android) to read and write on the external storage
+
+https://reactnative.dev/docs/permissionsandroid
