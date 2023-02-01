@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, View, Text, StyleSheet, SafeAreaView } from 'react-native';
-const RNFS = require('react-native-fs');
+import * as RNFS from 'react-native-fs';
 
 function App() {
 
