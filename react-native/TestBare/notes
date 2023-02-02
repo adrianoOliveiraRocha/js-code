@@ -1,3 +1,9 @@
+Preciso saber onde está o arquivo pra poder guardar em outro lugar e 
+depois usar no backup
+
+next -> https://www.npmjs.com/package/react-native-fs?activeTab=readme#usage-android
+
+
 Constants
 
 The following constants are available on the RNFS export:
