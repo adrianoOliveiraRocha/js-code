@@ -11,7 +11,7 @@ function Formulary() {
   function insertClient() {
     if(name && cpf) {
       Client.insertClient({id: Date.now(), name, cpf})
-      .then(result => {
+      .then(() => {
         ToastAndroid.show("Client inserted!", ToastAndroid.LONG);
         setName(""); setCPF("");        
       })

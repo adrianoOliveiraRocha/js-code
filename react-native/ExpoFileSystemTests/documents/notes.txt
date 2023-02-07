@@ -1,0 +1,7 @@
+https://docs.expo.dev/versions/latest/sdk/filesystem/
+https://docs.expo.dev/versions/latest/sdk/media-library/
+https://docs.expo.dev/versions/latest/sdk/document-picker/
+
+examples: https://javascript.hotexamples.com/examples/expo/FileSystem/writeAsStringAsync/javascript-filesystem-writeasstringasync-method-examples.html
+
+Atention =>https://forums.expo.dev/t/how-to-save-the-file-to-devices-folder-like-download/2398/10

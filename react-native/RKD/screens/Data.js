@@ -35,6 +35,7 @@ function Data() {
     React.useEffect(() => {
       Client.getClients()
       .then(clients => {
+        console.log(clients);
         let isMounted = true;
         if(isMounted && clients) {
           let arrayTemp = [];
@@ -45,6 +46,7 @@ function Data() {
         }
       })
       .catch(error => {
+        console.error(error);
         alert("OOPS! " + error);
       })
     }, [asyncFun, onSeccess]);
@@ -64,6 +66,7 @@ function Data() {
   function update() {
     Client.getClients()
     .then(clients => {
+      console.log(clients);
       setData(clients);
       ToastAndroid.show("Updated!", ToastAndroid.LONG);
     })
