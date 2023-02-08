@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    // padding: 20,
     justifyContent: 'center'
   },
 
@@ -55,9 +55,9 @@ const styles = StyleSheet.create({
 
   titleFild: {
     height: 40,
-    margin: 12,
+    // margin: 12,
     borderWidth: 1,
-    padding: 10
+    // padding: 10
   },
 
   tiContainer: {

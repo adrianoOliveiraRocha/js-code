@@ -66,7 +66,7 @@ function Data() {
   function update() {
     Client.getClients()
     .then(clients => {
-      console.log(clients);
+      // console.log(clients);
       setData(clients);
       ToastAndroid.show("Updated!", ToastAndroid.LONG);
     })
