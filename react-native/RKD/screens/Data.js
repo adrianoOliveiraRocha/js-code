@@ -35,7 +35,7 @@ function Data() {
     React.useEffect(() => {
       Client.getClients()
       .then(clients => {
-        console.log(clients);
+        // console.log(clients);
         let isMounted = true;
         if(isMounted && clients) {
           let arrayTemp = [];
@@ -116,8 +116,13 @@ function Data() {
     .then(async (result) => {
       if(result.type === "success") {
         let fileData = await FileSystem.readAsStringAsync(result.uri);
-        let jsonData = JSON.parse(fileData);
-        console.log(jsonData);
+        Client.getBackup(fileData)
+        .then(result => {
+          alert("Success!");
+        })
+        .catch(err => {
+          alert(err.message);
+        })
       }
     })
     .catch(error => {

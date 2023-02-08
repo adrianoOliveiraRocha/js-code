@@ -29,6 +29,14 @@ const Client = {
     } catch (error) {
       return error;
     }
+  },
+
+  getBackup: async function(clients) {
+    try {
+      await AsyncStorage.setItem(storageKey, clients);
+    } catch (error) {
+      
+    }
   }
 }
 
