@@ -1,42 +1,49 @@
 import React from "react";
-const storageKey = '@clientsData';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Client = {
-  getClients: async function() {
-    try {
-      let clients = await AsyncStorage.getItem(storageKey);
-      return JSON.parse(clients); // return array of objects
-    } catch (error) {
-      return error;
-    }
-  },
 
   insertClient: async function(client) {
-    let clients = await this.getClients(); // array of objects
-     if(clients) { // We have clients
-      clients.push(client);
-      await AsyncStorage.setItem(storageKey, JSON.stringify(clients));
-    } else { // Your first client
-      let clients = [client];
-      await AsyncStorage.setItem(storageKey, JSON.stringify(clients));
-    }
+    let key = 'client_' + client.cpf;
+    await AsyncStorage.setItem(key, JSON.stringify(client));
+  },
+  
+  getClients: async function() {
+    let keys = await AsyncStorage.getAllKeys();
+    return AsyncStorage.multiGet(keys);
   },
 
   clear: async function() {
-    try {
-      await AsyncStorage.removeItem(storageKey);
-    } catch (error) {
-      return error;
-    }
+    let keys = await AsyncStorage.getAllKeys();
+    return AsyncStorage.multiRemove(keys);   
   },
 
+
+
+  
+
   getBackup: async function(clients) {
+    
     try {
-      await AsyncStorage.setItem(storageKey, clients);
+      let count = 0, group = [];
+      for(let i = 0; i < Object.keys(clients).length; i++) {
+        if(count == 3) {
+          await AsyncStorage.mergeItem(storageKey, JSON.stringify(group));
+          group = []; group.push(clients[i]);
+          count = 0;          
+        } else {
+          
+          group.push(clients[i]);
+          count++;
+          
+        }        
+      }
+      await AsyncStorage.mergeItem(storageKey, JSON.stringify(group)); 
     } catch (error) {
-      
+      throw new Error('line 53: ' + error.message);
     }
+    
+    // await AsyncStorage.setItem(storageKey, JSON.stringify(clients));
   }
 }
 

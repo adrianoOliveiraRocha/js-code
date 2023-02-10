@@ -1,6 +1,7 @@
 import React from 'react';
 import * as DocumentPicker from 'expo-document-picker';
 import * as FileSystem from 'expo-file-system';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { 
   View, 
   Text, 
@@ -30,7 +31,7 @@ function Data() {
   }
 
   const [data, setData] = React.useState([]);
-
+ 
   (function useAsync(asyncFun, onSeccess) {
     React.useEffect(() => {
       Client.getClients()
@@ -38,11 +39,13 @@ function Data() {
         // console.log(clients);
         let isMounted = true;
         if(isMounted && clients) {
-          let arrayTemp = [];
-          clients.forEach(client => {
-            arrayTemp.push({ key: client.id, name: `${client.name}` });
-          });
-          setData(arrayTemp);
+          let data = [];
+          for (const client of clients) {
+            data.push({key: client[0], name: JSON.parse(client[1]).name, cpf: JSON.parse(client[1]).cpf});
+            console.log(data);
+            setData(data);
+            console.log("Clients readed!");
+          }
         }
       })
       .catch(error => {
@@ -52,42 +55,33 @@ function Data() {
     }, [asyncFun, onSeccess]);
   })();
 
-  function clearData() {
+  async function clearData() {
     Client.clear()
-    .then(res => {
-      setData([]);
-      ToastAndroid.show("Cleaned!", ToastAndroid.LONG);
-    })
+    .then(() => {
+      alert('success');
+    })    
     .catch(err => {
-      ToastAndroid.show(err, ToastAndroid.LONG);
-    }) 
+      alert("No data to remove");
+    })
   }
 
-  function update() {
+  async function update() {
     Client.getClients()
     .then(clients => {
-      // console.log(clients);
-      setData(clients);
-      ToastAndroid.show("Updated!", ToastAndroid.LONG);
+      let data = [];
+      for (const client of clients) {
+        console.log(JSON.parse(client[1]).name)
+        data.push({key: client[0], name: JSON.parse(client[1]).name, cpf: JSON.parse(client[1]).cpf});
+        // console.log(data);
+        setData(data);
+      }
     })
     .catch(err => {
-      alert("Error: " + err);
-    })    
+      console.log(err);
+    })
   }
 
   function share() {
-    Client.getClients()
-    .then(clients => {
-      setData(clients);
-      _share();
-    })
-    .catch(err => {
-      alert(err);
-    })
-  }
-
-  const _share = () => {
-    
     (async function onShare() {
       try {
         const result = await Share.share({
@@ -108,7 +102,6 @@ function Data() {
         alert(error.message);
       }
     })(); 
-
   }
 
   function backup() {
@@ -130,6 +123,7 @@ function Data() {
     })
   }
 
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.top}>
@@ -138,6 +132,7 @@ function Data() {
         </Text>
       </View>
       <View style={styles.middle}>
+
         <View style={{flex: 0.6, marginTop: 5}}>
           <FlatList 
             data={data}
@@ -145,6 +140,7 @@ function Data() {
             keyExtractor={item => item.name}
           />
         </View>
+        
         <View style={[styles.form, {flex: 0.4}]}>
           {/*row*/}
           <View> 
@@ -164,11 +160,11 @@ function Data() {
                 onPress={share}>
                 <Text style={styles.textButton}>Share</Text>
               </TouchableOpacity>
-              <TouchableOpacity 
+              {/* <TouchableOpacity 
                 style={[styles.button, {marginTop: 1}]}
                 onPress={backup}>
                 <Text style={styles.textButton}>Backup</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
           </View>
         </View>
