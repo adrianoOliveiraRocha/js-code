@@ -1,7 +1,6 @@
 import React from 'react';
 import * as DocumentPicker from 'expo-document-picker';
 import * as FileSystem from 'expo-file-system';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { 
   View, 
   Text, 
@@ -10,28 +9,33 @@ import {
   ToastAndroid,
   SafeAreaView,
   Share } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import styles from './styles/styles';
 import Client from '../models/Client';
 
-function Item({ item }) {
-  return (
-    <TouchableOpacity style={styles.item}>
-      <Text style={styles.itemText}>{item.name}</Text>
-    </TouchableOpacity>
-  )
-}
+function Main({ navigation }) {
+  const [data, setData] = React.useState([]);
+  // const [selectedKey, setSelectedKey] = React.useState();
 
-function Data() {
+  function testSK(key) {
+    navigation.navigate('Details', {key});
+  }
 
+  function Item({ item, onPress }) {
+    return (
+      <TouchableOpacity style={styles.item} onPress={onPress}>
+        <Text style={styles.itemText}>{item.name}</Text>
+      </TouchableOpacity>
+    )
+  }
+  
   function renderItem({ item }) {
     return (
-      <Item item={item} />
+      <Item item={item} onPress={() => {testSK(item.key)}}/>
     )
   }
 
-  const [data, setData] = React.useState([]);
- 
   (function useAsync(asyncFun, onSeccess) {
     React.useEffect(() => {
       Client.getClients()
@@ -121,7 +125,7 @@ function Data() {
     })
   }
 
-
+  
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.top}>
@@ -173,6 +177,51 @@ function Data() {
         </Text>
       </View>
     </SafeAreaView>
+  );
+}
+
+const ClientDetails = ({ route, navigation }) => {
+  const {key} = route.params;
+  return (
+    <SafeAreaView>
+      <Text>Test: {key}</Text>
+    </SafeAreaView>
+  )
+}
+
+const Stack = createNativeStackNavigator();
+
+const MyStack = () => {
+  return (
+    <Stack.Navigator initialRouteName="Home">
+      <Stack.Screen 
+        name="Main"
+        component={Main}
+        options={{
+          title: "Main",
+          headerTintColor: "white",
+          headerStyle: {backgroundColor: "#4589df"}
+        }}
+      />
+
+      <Stack.Screen 
+        name="Details"
+        component={ClientDetails}
+        options={{
+          title: "Details",
+          headerTintColor: "white",
+          headerStyle: {backgroundColor: "#4589df"}
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+
+
+function Data() {
+  return(
+    <MyStack />
   );
 }
 
