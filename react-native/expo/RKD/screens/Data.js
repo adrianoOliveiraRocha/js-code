@@ -36,15 +36,12 @@ function Data() {
     React.useEffect(() => {
       Client.getClients()
       .then(clients => {
-        // console.log(clients);
         let isMounted = true;
         if(isMounted && clients) {
           let data = [];
           for (const client of clients) {
             data.push({key: client[0], name: JSON.parse(client[1]).name, cpf: JSON.parse(client[1]).cpf});
-            console.log(data);
             setData(data);
-            console.log("Clients readed!");
           }
         }
       })
@@ -58,6 +55,7 @@ function Data() {
   async function clearData() {
     Client.clear()
     .then(() => {
+      setData([]);
       alert('success');
     })    
     .catch(err => {
@@ -70,9 +68,7 @@ function Data() {
     .then(clients => {
       let data = [];
       for (const client of clients) {
-        console.log(JSON.parse(client[1]).name)
         data.push({key: client[0], name: JSON.parse(client[1]).name, cpf: JSON.parse(client[1]).cpf});
-        // console.log(data);
         setData(data);
       }
     })
@@ -109,9 +105,11 @@ function Data() {
     .then(async (result) => {
       if(result.type === "success") {
         let fileData = await FileSystem.readAsStringAsync(result.uri);
-        Client.getBackup(fileData)
-        .then(result => {
+        console.log(JSON.parse(fileData));
+        Client.getBackup(JSON.parse(fileData))
+        .then(() => {
           alert("Success!");
+          update();
         })
         .catch(err => {
           alert(err.message);
@@ -160,11 +158,11 @@ function Data() {
                 onPress={share}>
                 <Text style={styles.textButton}>Share</Text>
               </TouchableOpacity>
-              {/* <TouchableOpacity 
+              <TouchableOpacity 
                 style={[styles.button, {marginTop: 1}]}
                 onPress={backup}>
                 <Text style={styles.textButton}>Backup</Text>
-              </TouchableOpacity> */}
+              </TouchableOpacity>
             </View>
           </View>
         </View>
