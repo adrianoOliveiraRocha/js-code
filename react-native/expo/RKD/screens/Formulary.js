@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, ToastAndroid } from 'react-native';
-import colors from './styles/colors';
-import styles from './styles/styles';
+import colors from './../styles/colors';
+import styles from './../styles/styles';
 import Client from '../models/Client';
 
 function Formulary() {

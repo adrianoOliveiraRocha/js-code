@@ -22,6 +22,10 @@ const Client = {
     clients.forEach(client => {
       this.insertClient(client);
     });
+  },
+
+  getClient: async function(key) {
+    return AsyncStorage.getItem(key);
   }
 }
 

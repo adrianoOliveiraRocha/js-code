@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StatusBar } from 'react-native';
-import styles from './styles/styles'
+import styles from './../styles/styles';
 
 function Home() {
   return (
