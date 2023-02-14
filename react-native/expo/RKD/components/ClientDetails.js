@@ -2,6 +2,7 @@ import React from 'react';
 import { 
   View, 
   Text, 
+  TextInput,
   TouchableOpacity, 
   ToastAndroid,
   SafeAreaView,
@@ -13,14 +14,23 @@ import Client from './../models/Client';
 const ClientDetails = ({ route, navigation }) => {
   const {key} = route.params;
   const [client, setClient] = React.useState({});
+  const [name, setName] = React.useState('');
   const [ready, setReady] = React.useState(false);
 
+  function changeName(text) {
+    setName(text);
+  }
+  
   React.useEffect(() => {
     let isMounted = true;
     Client.getClient(key)
     .then(result => {
       if(isMounted) {
-        setClient(result);
+        let jsonClient = JSON.parse(result);
+        setClient(jsonClient);
+        if(name === '') {
+          setName(jsonClient.name)
+        }
         setReady(true);
       }      
     })
@@ -29,12 +39,15 @@ const ClientDetails = ({ route, navigation }) => {
     })
   })
 
-
   return (
     ready
     ? (
       <SafeAreaView>
-        <Text>Test: {JSON.stringify(client)}</Text>
+        <Text>Name</Text>
+        <TextInput 
+          keyboardType="default"
+          value={name}
+          onChangeText={changeName} />
       </SafeAreaView>
     )
     : (
