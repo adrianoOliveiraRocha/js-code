@@ -44,12 +44,26 @@ const ClientDetails = ({ route, navigation }) => {
     if(name === client.name) {
       alert('No changes');
     } else {
-      alert("Let's change it");
+      client.key = key;
+      client.name = name;
+      Client.edit(client)
+      .then(() => {
+        alert('Success!');
+      })
+      .catch(err => {
+        alert(err);
+      })
     }
   }
 
-  const _delete = () => {
-    alert('Delete')
+  const remove = () => {
+    Client.remove(key)
+    .then(() => {
+      alert("Deleted :(");
+    })
+    .catch(err => {
+      alert(err);
+    })
   }
 
   return (
@@ -70,13 +84,14 @@ const ClientDetails = ({ route, navigation }) => {
               placeholder="Your name here"
               keyboardType="default"
               value={name}
+              autoCapitalize={"words"}
               onChangeText={changeName} />
             
             <TouchableOpacity style={styles.buttonForm} onPress={edit}>
               <Text style={styles.textButton}>Edite</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.buttonFormDanger} onPress={_delete}>
+            <TouchableOpacity style={styles.buttonFormDanger} onPress={remove}>
               <Text style={styles.textButton}>Delete</Text>
             </TouchableOpacity>        
           </View> 

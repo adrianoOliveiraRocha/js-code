@@ -26,6 +26,14 @@ const Client = {
 
   getClient: async function(key) {
     return AsyncStorage.getItem(key);
+  },
+
+  edit: async function edit(client) {
+    return AsyncStorage.mergeItem(client.key, JSON.stringify(client));
+  },
+  
+  remove: async function (key) {
+    return AsyncStorage.removeItem(key);
   }
 }
 

@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
 
   middle: {
     flex: 0.85,
+    // marginTop: 150
     // backgroundColor: "beige",
     // borderWidth: 1
   },

@@ -30,7 +30,7 @@ function Formulary() {
           Insert Client
         </Text>
       </View>
-      <View style={styles.middle}>
+      <View style={[styles.middle, {marginTop: 150}]}>
         <View style={styles.form}>
           {/*row*/}
           <View> 
