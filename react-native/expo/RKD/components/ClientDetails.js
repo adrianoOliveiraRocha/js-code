@@ -15,6 +15,7 @@ const ClientDetails = ({ route, navigation }) => {
   const {key} = route.params;
   const [client, setClient] = React.useState({});
   const [name, setName] = React.useState('');
+  const [nameReady, setNameReady] = React.useState(false);
   const [ready, setReady] = React.useState(false);
 
   function changeName(text) {
@@ -28,8 +29,8 @@ const ClientDetails = ({ route, navigation }) => {
       if(isMounted) {
         let jsonClient = JSON.parse(result);
         setClient(jsonClient);
-        if(name === '') {
-          setName(jsonClient.name)
+        if(!nameReady) {
+          setName(jsonClient.name); setNameReady(true);
         }
         setReady(true);
       }      
@@ -39,15 +40,54 @@ const ClientDetails = ({ route, navigation }) => {
     })
   })
 
+  const edit = () => {
+    if(name === client.name) {
+      alert('No changes');
+    } else {
+      alert("Let's change it");
+    }
+  }
+
+  const _delete = () => {
+    alert('Delete')
+  }
+
   return (
     ready
     ? (
-      <SafeAreaView>
-        <Text>Name</Text>
-        <TextInput 
-          keyboardType="default"
-          value={name}
-          onChangeText={changeName} />
+      <SafeAreaView style={styles.container}>
+        {/* top */}
+        <View style={styles.top}>
+          <Text style={styles.title}>
+            Key: {key}
+          </Text>
+        </View>
+        {/* middle */}
+        <View style={[styles.middle, {marginTop: 150}]}>
+          <View style={styles.form}>
+            <TextInput 
+              style={styles.inputFild}
+              placeholder="Your name here"
+              keyboardType="default"
+              value={name}
+              onChangeText={changeName} />
+            
+            <TouchableOpacity style={styles.buttonForm} onPress={edit}>
+              <Text style={styles.textButton}>Edite</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.buttonFormDanger} onPress={_delete}>
+              <Text style={styles.textButton}>Delete</Text>
+            </TouchableOpacity>        
+          </View> 
+        </View>
+        {/* bottom */}
+        <View style={styles.bottom}>
+          <Text style={styles.smallText}>
+            w3software.br@gmail.com
+          </Text>
+        </View>
+
       </SafeAreaView>
     )
     : (

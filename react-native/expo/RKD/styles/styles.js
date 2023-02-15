@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
 
   middle: {
     flex: 0.85,
-    backgroundColor: "beige",
-    borderWidth: 1
+    // backgroundColor: "beige",
+    // borderWidth: 1
   },
 
   bottom: {
@@ -65,6 +65,13 @@ const styles = StyleSheet.create({
     margin: 15
   },
 
+  form: {
+    // marginTop: 50,
+    flex: 0.1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
   inputFild: {
     height: 50,
     width: 300,
@@ -73,6 +80,28 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10
+  },
+
+  buttonForm: {
+    height: 50,
+    width: 300,
+    fontSize: 25,
+    textAlign: "center",
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    backgroundColor: colors.color2,    
+  },
+
+  buttonFormDanger: {
+    height: 50,
+    width: 300,
+    fontSize: 25,
+    textAlign: "center",
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    backgroundColor: '#a22',    
   },
 
   button: {
@@ -100,6 +129,10 @@ const styles = StyleSheet.create({
 
   itemText: {
     fontSize: 20
+  },
+
+  fomrFieldName: {
+    fontSize: 30
   }
 });
 

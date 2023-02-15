@@ -1,3 +1,3 @@
 git add .;
-git commit -m 'on time please';
+git commit -m 'scree clien detais created';
 git push;

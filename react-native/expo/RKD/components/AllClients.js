@@ -126,11 +126,13 @@ function AllClients({ navigation }) {
   
   return (
     <SafeAreaView style={styles.container}>
+      {/* top */}
       <View style={styles.top}>
         <Text style={styles.title}>
           All Clients
         </Text>
       </View>
+      {/* middle */}
       <View style={styles.middle}>
 
         <View style={{flex: 0.6, marginTop: 5}}>
@@ -169,6 +171,7 @@ function AllClients({ navigation }) {
           </View>
         </View>
       </View>
+      {/* bottom */}
       <View style={styles.bottom}>
         <Text style={styles.smallText}>
           w3software.br@gmail.com
