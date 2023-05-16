@@ -1,17 +1,15 @@
 {
   "expo": {
-    "name": "ReactNativeKeepData",
-    "slug": "react-native-keep-data",
+    "name": "Local_Notifications-Good",
+    "slug": "test-notifications1-Anil_Verma",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
       "**/*"
@@ -22,18 +20,17 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#ffffff"
       },
-
-      "permissions": [
-        "READ_EXTERNALSTORAGE", 
-        "WRITE_EXTERNALSTORAGE",
-        "MEDIA_LIBRARY",
-        "INTERNET"
-      ]
+      "package": "com.adriano.qwe32.testnotifications1Anil_Verma"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e7029562-ae3e-4f4f-ba87-00f4b0dc3a53"
+      }
     }
   }
 }

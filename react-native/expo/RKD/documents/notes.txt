@@ -1,8 +1,0 @@
-https://react-native-async-storage.github.io/async-storage/
-
-DocumentPicker
-expo-file-system
-
-https://reactnative.dev/docs/0.70/share -> using now
-https://docs.expo.dev/versions/latest/sdk/sharing/
-
